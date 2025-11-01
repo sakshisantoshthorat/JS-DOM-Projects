@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+</head>
+
+<body>
+    <img src="\JS DOM Projects\ImageSlider\images\nature.jpeg" alt="img1" id="slider">
+    <button id="nextBtn">Next</button>
+
+    <script>
+        const images = [
+            'images/nature.jpeg', 'images/parrot.jpeg', 'images/img3.avif'
+        ];
+
+        let i = 0;
+        const img = document.getElementById('slider');
+        const btn = document.getElementById('nextBtn');
+
+        btn.addEventListener("click", () => {
+            i = (i + 1) % images.length;
+            img.src = images[i];
+        });
+    </script>
+</body>
+
+</html>
