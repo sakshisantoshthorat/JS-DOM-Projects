@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter App</title>
+    <style>
+        h1 {
+            text-align: center;
+            margin-top: 130px;
+            color: rgb(10, 9, 10);
+        }
+
+        .counterApp {
+            justify-self: center;
+            border: 2px solid blue;
+            border-radius: 10px;
+            padding: 60px 60px;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .buttons {
+            padding: 10px 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Counter App</h1>
+    <div class="counterApp">
+        <h2 id="count">0</h2>
+        <div class="buttons">
+            <button id="decrease">Decrease</button>
+            <button id="reset">Reset</button>
+            <button id="increase">Increase</button>
+        </div>
+    </div>
+    <script>
+        const countDisplay = document.querySelector('#count');
+        const decreaseBtn = document.querySelector('#decrease');
+        const resetBtn = document.querySelector('#reset');
+        const increaseBtn = document.querySelector('#increase');
+
+        let count = 0;
+
+        decreaseBtn.addEventListener("click", () => {
+            count--;
+            updateDisplay();
+        });
+
+        increaseBtn.addEventListener("click", () => {
+            count++;
+            updateDisplay();
+        });
+
+        resetBtn.addEventListener("click", () => {
+            count = 0;
+            updateDisplay();
+        });
+
+        function updateDisplay() {
+            countDisplay.textContent = count;
+            if (count < 0) {
+                countDisplay.style.color = "black";
+            } else if (count > 0) {
+                countDisplay.style.color = "blue";
+            } else {
+                countDisplay.style.color = "red";
+            }
+        }
+    </script>
+</body>
+
+</html>
