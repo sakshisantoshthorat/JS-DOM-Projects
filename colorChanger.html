@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Changer</title>
+    <style>
+      h2 {
+        text-align: center;
+      }
+      .buttons {
+        display: flex;
+        justify-self: center;
+      }
+
+      span {
+        display: block;
+      }
+      .btn {
+        height: 50px;
+        width: 50px;
+        border: 1px solid black;
+        margin: 0px 5px;
+      }
+      #pink {
+        background-color: pink;
+      }
+      #purple {
+        background-color: purple;
+      }
+      #red {
+        background-color: red;
+      }
+      #blue {
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Color Changer</h2>
+    <div class="buttons">
+      <span class="btn" id="pink"></span>
+      <span class="btn" id="purple"></span>
+      <span class="btn" id="red"></span>
+      <span class="btn" id="blue"></span>
+    </div>
+    <script>
+      const btns = document.querySelectorAll(".btn");
+      console.log(btns);
+      const body = document.querySelector("body");
+      btns.forEach(function (btn) {
+        console.log(btn);
+        btn.addEventListener("click", function (event) {
+          console.log(event);
+          console.log(event.target);
+          if (event.target.id === "pink") {
+            body.style.backgroundColor = "pink";
+          } else if (event.target.id === "purple") {
+            body.style.backgroundColor = "purple";
+          } else if (event.target.id === "red") {
+            body.style.backgroundColor = "red";
+          } else if (event.target.id === "blue") {
+            body.style.backgroundColor = "blue";
+          }
+        })
+      });
+    </script>
+  </body>
+</html>
