@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        input,
+        button,
+        p {
+            padding: 8px 10px;
+            border-radius: 4px;
+        }
+
+        button {
+            margin-left: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="" id="form">
+        <input type="text" name="username" id="username" placeholder="Enter username"><br><br>
+        <input name="email" id="email" placeholder="Enter email"><br><br>
+        <input type="password" name="password" id="pass" placeholder="Enter Password"><br><br>
+        <button type="submit" value="submit" id="submit">Submit</button><br><br>
+    </form>
+    <p id="msg"></p>
+
+    <script>
+        const form = document.getElementById('form');
+        const msg = document.getElementById('msg');
+        msg.style.color = "red";
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const pass = document.getElementById('pass').value.trim();
+
+            if (!username || !email || !pass) {
+                msg.textContent = "All Fields are Required";
+            } else if (!email.includes('@')) {
+                msg.textContent = "Please enter valid email";
+            } else if (pass.length < 6) {
+                msg.textContent = "Password must be at least 6 characters";
+            } else {
+                msg.textContent = "Form submitted successfully";
+                msg.style.color = "green";
+            }
+        });
+    </script>
+</body>
+
+</html>
