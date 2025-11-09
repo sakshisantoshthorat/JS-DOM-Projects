@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Quiz App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom right, #74ebd5, #ACB6E5);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .quiz-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            color: black;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .answer-btn {
+            display: block;
+            width: 100%;
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #007BFF;
+            border-radius: 5px;
+            background-color: rgb(19, 83, 90);
+            cursor: pointer;
+        }
+
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quiz-container">
+        <h2>🧠 Simple Quiz App</h2>
+        <div id="quiz">
+            <h3 id="question">Question text</h3>
+            <div id="answers"></div>
+            <button id="nextBtn">Next</button>
+        </div>
+        <div id="result" class="hidden"></div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What does HTML stand for?",
+                answers: [
+                    "Hyper Trainer Marking Language",
+                    "Hyper Text Markup Language",
+                    "Hyper Text Marketing Language",
+                    "High Text Markup Language"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which language is used to style web pages?",
+                answers: ["HTML", "JQuery", "CSS", "XML"],
+                correct: 2
+            },
+            {
+                question: "Which is used for web app logic?",
+                answers: ["PHP", "HTML", "Python", "JavaScript"],
+                correct: 3
+            },
+            {
+                question: "Which tag is used to create a hyperlink?",
+                answers: ["<link>", "<a>", "<h1>", "<p>"],
+                correct: 1
+            }
+        ];
+
+        const questionEl = document.getElementById("question");
+        const answersEl = document.getElementById("answers");
+        const nextBtn = document.getElementById("nextBtn");
+        const resultEl = document.getElementById("result");
+        const quizEl = document.getElementById("quiz");
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            questionEl.textContent = q.question;
+            answersEl.innerHTML = "";
+
+            q.answers.forEach((answer, index) => {
+                const btn = document.createElement("button");
+                btn.textContent = answer;
+                btn.classList.add("answer-btn");
+                btn.addEventListener("click", () => selectAnswer(index));
+                answersEl.appendChild(btn);
+            });
+        }
+
+        function selectAnswer(index) {
+            const correct = questions[currentQuestion].correct;
+            const allBtns = document.querySelectorAll(".answer-btn");
+
+            allBtns.forEach((btn, i) => {
+                btn.disabled = true;
+                if (i === correct) btn.style.backgroundColor = "#90EE90"; // green for correct
+                else if (i === index && i !== correct) btn.style.backgroundColor = "#FF7F7F"; // red for wrong
+            });
+
+            if (index === correct) score++;
+            nextBtn.style.display = "block";
+        }
+
+        nextBtn.addEventListener("click", () => {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                nextBtn.style.display = "none";
+                showQuestion();
+            } else {
+                showResult();
+            }
+        });
+
+        function showResult() {
+            quizEl.classList.add("hidden");
+            resultEl.classList.remove("hidden");
+            resultEl.innerHTML = `
+    <h3>🎉 Quiz Completed!</h3>
+    <p>Your score: ${score} / ${questions.length}</p>
+    <button onclick="location.reload()">Restart Quiz</button>
+  `;
+        }
+
+        showQuestion();
+        nextBtn.style.display = "none";
+
+    </script>
+</body>
+
+</html>
