@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Number</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Guess the number between 1 and 100.</h2>
+        <h2>You have only 10 Attempts.</h2>
+        <form action="">
+            <label for="">Enter a Number..</label>
+            <input type="text" name="num" id="num">
+            <input type="submit" value="Submit Guess" id="submit" class="submit">
+        </form>
+        <div>
+            <p>Previous Guesses : <span class="guesses"></span></p>
+            <p>Remaining Guesses : <span class="remainingGuess"></span></p>
+            <p class="loworhigh"></p>
+        </div>
+    </div>
+
+    <script>
+        const randomNum = (parseInt(Math.random() * 100 + 1));
+        let submit = document.querySelector("#submit");
+        let userInput = document.querySelector("#num");
+        let prevGuesse = document.querySelector(".guesses");
+        let remainingGuess = document.querySelector(".remainingGuess");
+        let loworhigh = document.querySelector(".loworhigh");
+
+        const p = document.createElement('p'); //create new elem for displaying result.
+
+    </script>
+</body>
+
+</html>
