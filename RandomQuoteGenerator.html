@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote Genertator</title>
+
+    <style>
+        body {
+            text-align: center;
+            margin-top: 180px;
+        }
+
+        #quote {
+            color: rgb(82, 2, 82);
+            font-size: 18px;
+        }
+
+        #quoteBtn {
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="quote">Click below btn to generate ramdom quote</p>
+    <button id="quoteBtn">New Quote</button>
+
+    <script>
+
+        const quotes = [
+            "Stay Positive",
+            "Stay hungry, stay foolish.",
+            "Be yourself; everyone else is taken.",
+            "Dream big and dare to fail."
+        ];
+        const quotetext = document.getElementById('quote');
+        const btn = document.getElementById('quoteBtn');
+
+        btn.addEventListener("click", () => {
+            const random = quotes[Math.floor(Math.random() * quotes.length)];
+            quotetext.textContent = random;
+        })
+    </script>
+</body>
+
+</html>
